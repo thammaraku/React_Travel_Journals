@@ -16,8 +16,5 @@ export default {
   // Saves a journal to the database
   saveJournal: function(journalData) {
     return axios.post("/api/journals", journalData);
-  },
-  checkLogin: function() {
-    return axios.post("/google/check_login");
-  },
+  }
 };
