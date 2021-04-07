@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
 // const GOOGLE_MAPS_API_KEY = "AIzaSyAX5jbsLY_jCzc3r7ljL-b62ISJ0Er1MM0"
+const GOOGLE_MAPS_API_KEY = "AIzaSyD3KGpziXLUe7Z_oxsS-v-yhtiB-qlqT_I"
 // const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 
@@ -13,8 +14,8 @@ function GMaps({ userListArr }) {
 
     // LOAD GOOGLE MAPS
     const googleMapScript = document.createElement("script");
-    // googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAX5jbsLY_jCzc3r7ljL-b62ISJ0Er1MM0&libraries=places`;
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+    // googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAX5jbsLY_jCzc3r7ljL-b62ISJ0Er1MM0&libraries=places`;
     googleMapScript.async = true;
     window.document.body.appendChild(googleMapScript);
     googleMapScript.addEventListener("load", () => {
