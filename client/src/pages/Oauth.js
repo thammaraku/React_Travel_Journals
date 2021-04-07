@@ -19,7 +19,8 @@ function Oauth() {
             isUserLoggedIn ?
             <a href="http://localhost:3001/google/logout">Logout</a> :
             
-            <a class="btn btn-lg btn-google btn-block btn-outline border rounded" href="http://localhost:3001/google">
+            // <a class="btn btn-lg btn-google btn-block btn-outline border rounded" href="http://localhost:3001/google">
+            <a class="btn btn-lg btn-google btn-block btn-outline border rounded" href="/google">
                 <img src="https://img.icons8.com/color/16/000000/google-logo.png" style={{ marginRight: '7px', marginBottom: '3px' }} /> 
                 Login With Google
             </a>
