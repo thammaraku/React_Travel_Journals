@@ -1,6 +1,6 @@
 const passport = require("passport");
 const router = require("express").Router();
-const isUserLoggedIn = require("../../config/middleware/isUserLoggedIn");
+const axios = require('axios')
 
 router.route("/")
   .get(passport.authenticate('google', {
@@ -15,18 +15,9 @@ router
     // Successful authentication redirect back to homepage
     //res.redirect('/journals');
     // axios.get("http://localhost:3000/journals");
-    res.cookie("is_logged_in", "yes");
-    res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/journals"});//!!!!!!! change to heroku
+    res.writeHead(302, {Location: "http://localhost:3000/journals"});//!!!!!!! change to heroku
+    // res.writeHead(302, {Location: "https://sheltered-plateau-62064.herokuapp.com/journals"});//!!!!!!! change to heroku
     res.end();
   });
-
-router
-  .route("/logout")
-  .get(isUserLoggedIn, (req, res) => {
-    req.logout();
-    res.clearCookie("is_logged_in");
-    res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/"});//!!!!!!! change to heroku
-    res.end();
-});
 
 module.exports = router;
