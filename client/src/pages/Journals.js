@@ -9,31 +9,24 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import dayjs from 'dayjs';
 import GMaps from "../components/GMaps"
 
-// const GOOGLE_MAPS_API_KEY = "AIzaSyAX5jbsLY_jCzc3r7ljL-b62ISJ0Er1MM0"
-// const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Journals() {
 
     let googleMap;
-    // const googleMapRef = useRef();
+    let initialFormState = {
+        trip: "",
+        place: "",
+        date: "",
+        placeDetail: ""
+    }
 
     // Setting our component's initial state
     const [journals, setJournals] = useState([])
-    const [formObject, setFormObject] = useState({})
-    // const [latestPlace, setLatestPlace] = useState({})
+    const [formObject, setFormObject] = useState({initialFormState})
 
     // Load all journals and store them with setJournals
     useEffect(() => {
         loadJournals()
-
-        // LOAD GOOGLE MAPS
-        // const googleMapScript = document.createElement("script");
-        // googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
-        // googleMapScript.async = true;
-        // window.document.body.appendChild(googleMapScript);
-        // googleMapScript.addEventListener("load", () => {
-        // });
-
     }, [])
 
     // Loads all journals and sets them to journals
@@ -53,8 +46,7 @@ function Journals() {
     }
 
     function clearValue () {
-        document.getElementById("journal-form").reset();
-        setFormObject({});
+        setFormObject(initialFormState);
     }
 
     // Handles updating component state when the user types into the input field
@@ -66,6 +58,7 @@ function Journals() {
     // When the form is submitted, use the API.saveJournal method to save the journal data Then reload journals from the database
     function handleFormSubmit(event) {
         event.preventDefault();
+        console.log(event);
         let lat, lng;
 
         googleMap = new window.google.maps.Geocoder().geocode({ 'address': formObject.place }, function (results, status) {
@@ -119,24 +112,32 @@ function Journals() {
                             onChange={handleInputChange}
                             name="trip"
                             placeholder="add trip name (required)"
+                            value={formObject.trip}
+
                         />
                         <Input
                             disabled={!(formObject.trip)}
                             onChange={handleInputChange}
                             name="place"
                             placeholder="add place (required)"
+                            value={formObject.place}
+
                         />
                         <Input
                             disabled={!(formObject.trip)}
                             onChange={handleInputChange}
                             type="date"
                             name="date"
+                            value= {formObject.date}
+
                         />
                         <TextArea
                             disabled={!(formObject.trip)}
                             onChange={handleInputChange}
                             name="placeDetail"
                             placeholder="Tell us about this place (required)"
+                            value= {formObject.placeDetail}
+
                         />
                         <FormBtn
                             disabled={!(formObject.trip && formObject.place && formObject.date && formObject.placeDetail)}

@@ -5,10 +5,21 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import GMaps from "../components/GMaps"
 
-// const GOOGLE_MAPS_API_KEY = "AIzaSyAX5jbsLY_jCzc3r7ljL-b62ISJ0Er1MM0"
 
 function Detail() {
-  const [clickPlace, setClickPlace] = useState({})
+
+  // INITIAL STATE
+  const singlePlace = 
+  {
+    "place": "",
+    "lat": "",
+    "lang": "",
+    "lng": "",
+  }
+;
+
+  // const [clickPlace, setClickPlace] = useState({})
+  const [clickPlace, setClickPlace] = useState(singlePlace)
 
   // When this component mounts, grab the journal with the _id of props.match.params.id
   // e.g. localhost:3000/journals/599dcb67f0f16317844583fc
@@ -24,15 +35,7 @@ function Detail() {
   // console.log(`Details.js clickPlace.lng=${clickPlace.lng}`)
 
   // console.log(clickPlace);
-  const singlePlace = [
-    {
-      "place": clickPlace.place,
-      "lat": clickPlace.lat,
-      "lang": clickPlace.lng,
-      "lng": clickPlace.lng,
-    }
-  ];
-
+ 
   return (
     <Container fluid>
       <Row>
@@ -43,8 +46,8 @@ function Detail() {
             </h1>
           </Jumbotron>
 
-          {/* <Maps id="map" center={clickPlace.center} place={clickPlace.place} /> */}
-          <GMaps userListArr={singlePlace} />
+          {/* <GMaps userListArr={singlePlace} /> */}
+          <GMaps userListArr={[clickPlace]} />
 
         </Col>
       </Row>

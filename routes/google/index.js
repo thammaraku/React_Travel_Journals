@@ -16,7 +16,9 @@ router
     //res.redirect('/journals');
     // axios.get("http://localhost:3000/journals");
     res.cookie("is_logged_in", "yes");
-    res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/journals"});//!!!!!!! change to heroku
+    // res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/journals"});//!!!!!!! change to heroku
+    res.writeHead(302, {Location: `${process.env.REACT_APP_URL}/journals`});//!!!!!!! change to heroku
+
     res.end();
   });
 
@@ -25,7 +27,9 @@ router
   .get(isUserLoggedIn, (req, res) => {
     req.logout();
     res.clearCookie("is_logged_in");
-    res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/"});//!!!!!!! change to heroku
+    // res.writeHead(302, {Location: "https://react-travel-journals.herokuapp.com/"});//!!!!!!! change to heroku
+    res.writeHead(302, {Location: `${process.env.REACT_APP_URL}/`});//!!!!!!! change to heroku
+
     res.end();
 });
 
